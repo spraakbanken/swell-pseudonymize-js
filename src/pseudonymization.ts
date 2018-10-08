@@ -1,7 +1,8 @@
 import * as names from './names'
 import * as random from './random'
 
-const mapping: { [key: string]: number[] } = {}
+export const variableMapping: { [key: string]: number[] } = {}
+export const usedForType: { [key: string]: any } = {}
 
 export function pseudonymize(s: string, labels: string[]): string {
   const fun = anonymization[labels[0]]
@@ -24,22 +25,32 @@ function pseudonymizeAge(type: string, labels: string[], s: string): string {
 
 function pseudonymizeWithVariable(a: string[]) {
   return function (type: string, labels: string[], s: string): string {
+    if(!usedForType[type]) {
+      usedForType[type] = []
+    }
+    
     if (labels.length > 0) {
       const variableIdx = parseInt(labels[labels.length - 1])
       if (!isNaN(variableIdx)) {
-        if (!mapping[type]) {
-          mapping[type] = []
+        if (!variableMapping[type]) {
+          variableMapping[type] = []
         }
-        if (mapping[type][variableIdx]) {
-          return a[mapping[type][variableIdx]]
+        if (variableMapping[type][variableIdx] != undefined) {
+          return a[variableMapping[type][variableIdx]]
         } else {
-          const arrayIdx = getRandomArrayIdx(a, mapping[type])
-          mapping[type][variableIdx] = arrayIdx
+          const arrayIdx = getRandomArrayIdx(a, variableMapping[type])
+          variableMapping[type][variableIdx] = arrayIdx
+          if (usedForType[type].indexOf(arrayIdx) == -1) {
+            usedForType[type].push(arrayIdx)
+          }
           return a[arrayIdx]
         }
       }
     }
-    const arrayIdx = getRandomArrayIdx(a)
+    const arrayIdx = getRandomArrayIdx(a, usedForType[type])
+    if (usedForType[type].indexOf(arrayIdx) == -1) {
+      usedForType[type].push(arrayIdx)
+    }
     return a[arrayIdx]
   }
 }
@@ -91,13 +102,20 @@ function institution(type: string, labels: string[], s: string): string {
   }
 }
 
+
 function getRandomArrayIdx(a: any[], used: number[] = []): number {
+  if( used.length == a.length) {
+    // every element in a has already been used, take a random one
+    random.getRandomInt(a.length)
+  }
+
   let idx = 0
   let loops = 0
   do {
     idx = random.getRandomInt(a.length)
     loops += 1
-  } while (used.indexOf(idx) != -1 && loops <= a.length)
+  // TODO this might loop forever, it will (very) probably not happen, fix better solution anyway?
+  } while (used.indexOf(idx) != -1)
 
   return idx
 }
