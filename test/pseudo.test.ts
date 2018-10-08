@@ -1,9 +1,20 @@
-import {pseudonymize} from '../src/pseudonymization'
+import {pseudonymize, anonymization} from '../src/pseudonymization'
 import * as assert from 'assert'
 import {} from 'jasmine';
 import * as names from '../src/names'
 
 describe('name', () => {
+
+  it('should ignore unknown labels', () => {
+    assert(pseudonymize('jaja', ['asdf']) == 'jaja')
+  })
+  
+  it('should be able to use every label', () => {
+    const allLabels: string[] = Object.keys(anonymization);
+    allLabels.forEach((label: string) => {
+      pseudonymize('jaja', [label])
+    })
+  })
 
   it('should return a male name', () =>
     assert(names.maleName.indexOf(pseudonymize('jaja', ['firstname:male', '1'])) != -1)

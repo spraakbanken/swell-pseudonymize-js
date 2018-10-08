@@ -5,7 +5,11 @@ const mapping: { [key: string]: number[] } = {}
 
 export function pseudonymize(s: string, labels: string[]): string {
   const fun = anonymization[labels[0]]
-  return fun(labels[0], labels.slice(1), s)
+  if (fun) {
+    return fun(labels[0], labels.slice(1), s)
+  } else {
+    return s
+  }
 }
 
 function pseudonymizeAge(type: string, labels: string[], s: string): string {
@@ -134,9 +138,7 @@ function pseudonymizeTransport(type: string, labels: string[], s: string): strin
   return result
 }
 
-const anonymization:{ [key: string]: (data: string, data1: string[], data2: string) => string } = {
-  //'gen': TODO
-  // 'ort': TODO
+export const anonymization:{ [key: string]: (type: string, labels: string[], s: string) => string } = {
   'firstname:male': pseudonymizeWithVariable(names.maleName),
   'firstname:female': pseudonymizeWithVariable(names.femaleName),
   'firstname:unknown': pseudonymizeWithVariable(names.unknownName),
@@ -151,7 +153,6 @@ const anonymization:{ [key: string]: (data: string, data1: string[], data2: stri
   'country': pseudonymizeWithVariable(names.countryOfOrigin),
   'zip_code': zipCode,
   'region': pseudonymizeWithVariable(names.region),
-  // 'city-SWE', // TODO this is not included in anonymization guide?
   'city': pseudonymizeWithVariable(names.city),
   'area': pseudonymizeWithVariable(names.area),
   'street': pseudonymizeWithVariable(names.streetName),
