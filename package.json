@@ -29,7 +29,7 @@
     "tape": "^4.9.0"
   },
   "scripts": {
-    "build": "rm dist/* -rf; parcel build src/pseudonymization.ts pseudonymization",
+    "build": "rm dist/* -rf; parcel build --target node src/pseudonymization.ts",
     "test": "mocha --require ts-node/register {src,src/*,test}/*test.ts*"
   }
 }
