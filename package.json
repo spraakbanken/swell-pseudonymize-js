@@ -29,9 +29,9 @@
     "tape": "^4.9.0"
   },
   "scripts": {
-    "build": "rm dist/* -rf; parcel build --target node src/pseudonymization.ts",
+    "build": "tsc",
     "test": "mocha --require ts-node/register {src,src/*,test}/*test.ts*"
   },
-  "main": "pseudonymization.js",
-  "typings": "pseudonymization.d.ts"
+  "main": "dist/src/pseudonymization",
+  "typings": "dist/src/pseudonymization"
 }
