@@ -32,6 +32,6 @@
     "build": "rm dist/* -rf; parcel build --target node src/pseudonymization.ts",
     "test": "mocha --require ts-node/register {src,src/*,test}/*test.ts*"
   },
-  "main": "pseudonymization",
-  "typings": "pseudonymization"
+  "main": "pseudonymization.js",
+  "typings": "pseudonymization.d.ts"
 }
