@@ -106,15 +106,12 @@ function institution(type: string, labels: string[], s: string): string {
 function getRandomArrayIdx(a: any[], used: number[] = []): number {
   if( used.length == a.length) {
     // every element in a has already been used, take a random one
-    random.getRandomInt(a.length)
+    return random.getRandomInt(a.length)
   }
 
   let idx = 0
-  let loops = 0
   do {
     idx = random.getRandomInt(a.length)
-    loops += 1
-  // TODO this might loop forever, it will (very) probably not happen, fix better solution anyway?
   } while (used.indexOf(idx) != -1)
 
   return idx

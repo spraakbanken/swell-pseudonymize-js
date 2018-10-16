@@ -74,6 +74,8 @@ describe('all', () => {
         assert(seenNames.indexOf(result) == -1)
         seenNames.push(result)
       }
+      const result2 = pseudonymize('jaja', ['firstname:female'])
+      assert(seenNames.indexOf(result2) > -1)
     })
 
     it('should return diffrent name for different number label', () => {
