@@ -6,26 +6,24 @@ export const variableMapping: { [type: string]: string[] } = {}
 export const usedForType: { [key: string]: any } = {}
 
 export function pseudonymize(s: string, labels: string[]): string {
+  let [type, extra_labels] = [labels[0], labels.slice(1)]
+  const variableIdx = getVariableIdx(extra_labels)
   const fun = anonymization[labels[0]]
-  if (fun) {
-    let [type, extra_labels] = [labels[0], labels.slice(1)]
-    // First try the store.
-    const variableIdx = getVariableIdx(extra_labels)
-    if (variableIdx !== undefined) {
-      if (storeHas(type, variableIdx)) {
-        return storeGet(type, variableIdx)
-      }
-    }
-    // Generate a new pseudonym.
-    const p = fun(type, extra_labels, s) + affix(labels)
-    // Save to store before returning.
-    if (variableIdx !== undefined) {
-      storeSet(type, variableIdx, p)
-    }
-    return p
-  } else {
-    return s
+  // By default, return the input.
+  let p = s
+  // First try the store.
+  if (variableIdx !== undefined && storeHas(type, variableIdx)) {
+    p = storeGet(type, variableIdx)
   }
+  // Otherwise try to generate a new pseudonym.
+  else if (fun) {
+    p = fun(type, extra_labels, s)
+  }
+  // Save to store before returning.
+  if (variableIdx !== undefined) {
+    storeSet(type, variableIdx, p)
+  }
+  return p + affix(labels)
 }
 
 /** Get the first numeric label. */

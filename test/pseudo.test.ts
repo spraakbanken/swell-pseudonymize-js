@@ -99,9 +99,10 @@ describe('all', () => {
     it('should add extra tags as affix', () => {
       console.log(pseudonymize('jaja', ['firstname:female', 'gen']))
       assert(pseudonymize('jaja', ['firstname:female', 'gen']).substr(-4) === '-gen')
+      const name1 = pseudonymize('jaja', ['firstname:female', '3'])
       const affixName1 = pseudonymize('jaja', ['firstname:female', '3', 'gen'])
       const affixName2 = pseudonymize('jaja', ['firstname:female', 'gen', '3'])
-      assert(affixName1.substr(-4) === '-gen')
+      assert(affixName1 === name1 + '-gen')
       assert(affixName1 == affixName2)
     })
   })
