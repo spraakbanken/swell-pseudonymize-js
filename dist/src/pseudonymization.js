@@ -2,18 +2,52 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const names = require("./names");
 const random = require("./random");
+/** A store of pseudonyms, indexed by type and variable index. */
 exports.variableMapping = {};
 exports.usedForType = {};
 function pseudonymize(s, labels) {
     const fun = exports.anonymization[labels[0]];
     if (fun) {
-        return fun(labels[0], labels.slice(1), s) + affix(labels.slice(1));
+        let [type, extra_labels] = [labels[0], labels.slice(1)];
+        // First try the store.
+        const variableIdx = getVariableIdx(extra_labels);
+        if (variableIdx !== undefined) {
+            if (storeHas(type, variableIdx)) {
+                return storeGet(type, variableIdx);
+            }
+        }
+        // Generate a new pseudonym.
+        const p = fun(type, extra_labels, s) + affix(labels);
+        // Save to store before returning.
+        if (variableIdx !== undefined) {
+            storeSet(type, variableIdx, p);
+        }
+        return p;
     }
     else {
         return s;
     }
 }
 exports.pseudonymize = pseudonymize;
+/** Get the first numeric label. */
+function getVariableIdx(labels) {
+    return labels.map(l => parseInt(l)).filter(n => !isNaN(n)).shift();
+}
+/** Check the presence of a stored pseudonym. */
+function storeHas(type, variableIdx) {
+    return exports.variableMapping[type] && exports.variableMapping[type][variableIdx] !== undefined;
+}
+/** Get a stored pseudonym. */
+function storeGet(type, variableIdx) {
+    return exports.variableMapping[type][variableIdx];
+}
+/** Save a pseudonym to the store. */
+function storeSet(type, variableIdx, p) {
+    if (!exports.variableMapping[type]) {
+        exports.variableMapping[type] = [];
+    }
+    exports.variableMapping[type][variableIdx] = p;
+}
 /** Get affix string like "-gen-ort" */
 function affix(labels) {
     return labels.filter(l => affixLabels.includes(l)).map(l => '-' + l).join('');
@@ -28,31 +62,10 @@ function pseudonymizeAge(type, labels, s) {
         return '' + (ageInt + offset);
     }
 }
-function pseudonymizeWithVariable(a) {
+function pseudonymizeFromList(a) {
     return function (type, labels, s) {
         if (!exports.usedForType[type]) {
             exports.usedForType[type] = [];
-        }
-        if (labels.length > 0) {
-            // Treat a numerical label as a variable index.
-            const variableIdxMaybe = extractFirst(labels, l => !isNaN(parseInt(l)));
-            if (variableIdxMaybe !== undefined) {
-                const variableIdx = parseInt(variableIdxMaybe);
-                if (!exports.variableMapping[type]) {
-                    exports.variableMapping[type] = [];
-                }
-                if (exports.variableMapping[type][variableIdx] != undefined) {
-                    return a[exports.variableMapping[type][variableIdx]];
-                }
-                else {
-                    const arrayIdx = getRandomArrayIdx(a, exports.variableMapping[type]);
-                    exports.variableMapping[type][variableIdx] = arrayIdx;
-                    if (exports.usedForType[type].indexOf(arrayIdx) == -1) {
-                        exports.usedForType[type].push(arrayIdx);
-                    }
-                    return a[arrayIdx];
-                }
-            }
         }
         const arrayIdx = getRandomArrayIdx(a, exports.usedForType[type]);
         if (exports.usedForType[type].indexOf(arrayIdx) == -1) {
@@ -104,13 +117,13 @@ function email() {
 function institution(type, labels, s) {
     const instType = labels[0];
     if (instType === 'school') {
-        return pseudonymizeWithVariable(names.school)(type, labels, s);
+        return pseudonymizeFromList(names.school)(type, labels, s);
     }
     else if (instType === 'work') {
-        return pseudonymizeWithVariable(names.workplace)(type, labels, s);
+        return pseudonymizeFromList(names.workplace)(type, labels, s);
     }
     else {
-        return pseudonymizeWithVariable(names.otherInstitution)(type, labels, s);
+        return pseudonymizeFromList(names.otherInstitution)(type, labels, s);
     }
 }
 function getRandomArrayIdx(a, used = []) {
@@ -150,7 +163,7 @@ function pseudonymizeDate(type, labels, s) {
     return s.replace(new RegExp("[0-9]", "g"), "1");
 }
 function pseudonymizeTransport(type, labels, s) {
-    let result = pseudonymizeWithVariable(names.transport)(type, labels, s);
+    let result = pseudonymizeFromList(names.transport)(type, labels, s);
     if (isUpperCase(s[0])) {
         result = s[0].toUpperCase() + result.slice(1);
     }
@@ -158,25 +171,25 @@ function pseudonymizeTransport(type, labels, s) {
 }
 const affixLabels = ['gen', 'def', 'ort'];
 exports.anonymization = {
-    'firstname:male': pseudonymizeWithVariable(names.maleName),
-    'firstname:female': pseudonymizeWithVariable(names.femaleName),
-    'firstname:unknown': pseudonymizeWithVariable(names.unknownName),
-    'surname': pseudonymizeWithVariable(names.surname),
+    'firstname:male': pseudonymizeFromList(names.maleName),
+    'firstname:female': pseudonymizeFromList(names.femaleName),
+    'firstname:unknown': pseudonymizeFromList(names.unknownName),
+    'surname': pseudonymizeFromList(names.surname),
     'middlename': () => 'A',
     'initials': () => 'A',
     'institution': institution,
-    'school': pseudonymizeWithVariable(names.school),
-    'work': pseudonymizeWithVariable(names.workplace),
-    'other_institution': pseudonymizeWithVariable(names.otherInstitution),
-    'country_of_origin': pseudonymizeWithVariable(names.country),
-    'country': pseudonymizeWithVariable(names.countryOfOrigin),
+    'school': pseudonymizeFromList(names.school),
+    'work': pseudonymizeFromList(names.workplace),
+    'other_institution': pseudonymizeFromList(names.otherInstitution),
+    'country_of_origin': pseudonymizeFromList(names.country),
+    'country': pseudonymizeFromList(names.countryOfOrigin),
     'zip_code': zipCode,
-    'region': pseudonymizeWithVariable(names.region),
-    'city': pseudonymizeWithVariable(names.city),
-    'city-SWE': pseudonymizeWithVariable(names.citySwe),
-    'area': pseudonymizeWithVariable(names.area),
-    'street': pseudonymizeWithVariable(names.streetName),
-    'geo': pseudonymizeWithVariable(names.geographicLocation),
+    'region': pseudonymizeFromList(names.region),
+    'city': pseudonymizeFromList(names.city),
+    'city-SWE': pseudonymizeFromList(names.citySwe),
+    'area': pseudonymizeFromList(names.area),
+    'street': pseudonymizeFromList(names.streetName),
+    'geo': pseudonymizeFromList(names.geographicLocation),
     'street_nr': randomInt,
     'transport': pseudonymizeTransport,
     'transport_line': () => '1',

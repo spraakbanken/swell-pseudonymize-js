@@ -150,6 +150,11 @@ describe('all', () => {
             let age = pseudonymization_1.pseudonymize('arton', ['age_digits']);
             assert(age.match(/^[0-9]+$/) != null);
         });
+        it('uses variable index', () => {
+            let age1 = pseudonymization_1.pseudonymize('10', ['age_digits', '2']);
+            let age2 = pseudonymization_1.pseudonymize('11', ['age_digits', '2']);
+            assert(age1 == age2);
+        });
     });
     describe('dates', () => {
         it('should replace day with random number between 1-28', () => {

@@ -1,5 +1,6 @@
+/** A store of pseudonyms, indexed by type and variable index. */
 export declare const variableMapping: {
-    [key: string]: number[];
+    [type: string]: string[];
 };
 export declare const usedForType: {
     [key: string]: any;

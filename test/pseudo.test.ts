@@ -197,6 +197,12 @@ describe('all', () => {
       assert(age.match(/^[0-9]+$/) != null)
     })
 
+    it('uses variable index', () => {
+      let age1 = pseudonymize('10', ['age_digits', '2'])
+      let age2 = pseudonymize('11', ['age_digits', '2'])
+      assert(age1 == age2)
+    })
+
   })
 
   describe('dates', () => {
