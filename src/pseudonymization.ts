@@ -7,10 +7,15 @@ export const usedForType: { [key: string]: any } = {}
 export function pseudonymize(s: string, labels: string[]): string {
   const fun = anonymization[labels[0]]
   if (fun) {
-    return fun(labels[0], labels.slice(1), s)
+    return fun(labels[0], labels.slice(1), s) + affix(labels.slice(1))
   } else {
     return s
   }
+}
+
+/** Get affix string like "-gen-ort" */
+function affix(labels: string[]): string {
+  return labels.filter(l => affixLabels.includes(l)).map(l => '-' + l).join('')
 }
 
 function pseudonymizeAge(type: string, labels: string[], s: string): string {
@@ -30,8 +35,10 @@ function pseudonymizeWithVariable(a: string[]) {
     }
     
     if (labels.length > 0) {
-      const variableIdx = parseInt(labels[labels.length - 1])
-      if (!isNaN(variableIdx)) {
+      // Treat a numerical label as a variable index.
+      const variableIdxMaybe = extractFirst(labels, l => !isNaN(parseInt(l)))
+      if (variableIdxMaybe !== undefined) {
+        const variableIdx = parseInt(variableIdxMaybe)
         if (!variableMapping[type]) {
           variableMapping[type] = []
         }
@@ -52,6 +59,16 @@ function pseudonymizeWithVariable(a: string[]) {
       usedForType[type].push(arrayIdx)
     }
     return a[arrayIdx]
+  }
+}
+
+/** Find, remove and return the first element matching a given predicate */
+function extractFirst<A>(xs: A[], pred: (a: A) => boolean): A | undefined {
+  const i = xs.findIndex(pred)
+  if (i > -1) {
+    const y = xs[i]
+    xs.splice(i, 1)
+    return y
   }
 }
 
@@ -153,6 +170,8 @@ function pseudonymizeTransport(type: string, labels: string[], s: string): strin
   return result
 }
 
+const affixLabels = ['gen', 'def', 'ort']
+
 export const anonymization:{ [key: string]: (type: string, labels: string[], s: string) => string } = {
   'firstname:male': pseudonymizeWithVariable(names.maleName),
   'firstname:female': pseudonymizeWithVariable(names.femaleName),
@@ -169,13 +188,14 @@ export const anonymization:{ [key: string]: (type: string, labels: string[], s: 
   'zip_code': zipCode,
   'region': pseudonymizeWithVariable(names.region),
   'city': pseudonymizeWithVariable(names.city),
+  'city-SWE': pseudonymizeWithVariable(names.citySwe),
   'area': pseudonymizeWithVariable(names.area),
   'street': pseudonymizeWithVariable(names.streetName),
   'geo': pseudonymizeWithVariable(names.geographicLocation),
   'street_nr': randomInt,
   'transport': pseudonymizeTransport,
   'transport_line': () => '1',
-  'age': pseudonymizeAge,
+  'age_digits': pseudonymizeAge,
   'day': () => '' + (random.getRandomInt(28) + 1),
   'month-digit': () => '' + (random.getRandomInt(12) + 1),
   'month-word': pseudonymizeWrittenMonth,

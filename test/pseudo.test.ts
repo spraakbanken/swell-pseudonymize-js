@@ -27,7 +27,7 @@ describe('all', () => {
       })
     })
 
-    it('should return a male name', () =>
+    it('should return a male name', () => 
       assert(names.maleName.indexOf(pseudonymize('jaja', ['firstname:male', '1'])) != -1)
     )
 
@@ -95,6 +95,15 @@ describe('all', () => {
     it('should replace initials with A', () => 
       assert(pseudonymize('GG', ['initials']) === 'A')
     )
+
+    it('should add extra tags as affix', () => {
+      console.log(pseudonymize('jaja', ['firstname:female', 'gen']))
+      assert(pseudonymize('jaja', ['firstname:female', 'gen']).substr(-4) === '-gen')
+      const affixName1 = pseudonymize('jaja', ['firstname:female', '3', 'gen'])
+      const affixName2 = pseudonymize('jaja', ['firstname:female', 'gen', '3'])
+      assert(affixName1.substr(-4) === '-gen')
+      assert(affixName1 == affixName2)
+    })
   })
 
   describe('institution', () => {
@@ -138,6 +147,7 @@ describe('all', () => {
 
     it('should replace city with random city', () => {
       assert(names.city.indexOf(pseudonymize('Flen', ['city'])) !== -1)
+      assert(names.citySwe.indexOf(pseudonymize('Flen', ['city-SWE'])) !== -1)
     })
 
     it('should replace geo with random geographic thing', () => {
@@ -178,12 +188,12 @@ describe('all', () => {
     }
     
     it('should replace number ages within 5 years', () => {
-      const age = pseudonymize('10', ['age'])
+      const age = pseudonymize('10', ['age_digits'])
       testAge(age, 10)
     })
     
     it('should replace string ages within 5 years', () => {
-      let age = pseudonymize('arton', ['age'])
+      let age = pseudonymize('arton', ['age_digits'])
       assert(age.match(/^[0-9]+$/) != null)
     })
 
