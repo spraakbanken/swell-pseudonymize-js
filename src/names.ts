@@ -68,6 +68,13 @@ export const country = [
 ]
 
 export const city = [
+  "Bagdad",
+  "Kairo",
+  "Köpenhamn",
+  "New York",
+]
+
+export const citySwe = [
   "Ladvreta",
   "Guntorp",
   "Myre"

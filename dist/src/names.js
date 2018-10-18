@@ -60,6 +60,12 @@ exports.country = [
     "Island"
 ];
 exports.city = [
+    "Bagdad",
+    "Kairo",
+    "Köpenhamn",
+    "New York",
+];
+exports.citySwe = [
     "Ladvreta",
     "Guntorp",
     "Myre"
