@@ -78,16 +78,6 @@ function pseudonymizeFromList(a: string[]) {
   }
 }
 
-/** Find, remove and return the first element matching a given predicate */
-function extractFirst<A>(xs: A[], pred: (a: A) => boolean): A | undefined {
-  const i = xs.findIndex(pred)
-  if (i > -1) {
-    const y = xs[i]
-    xs.splice(i, 1)
-    return y
-  }
-}
-
 function randomInt(): string {
   return '' + (random.getRandomInt(50) + 1)
 }
@@ -186,6 +176,7 @@ function pseudonymizeTransport(type: string, labels: string[], s: string): strin
   return result
 }
 
+/** Modifiers labels, not associated with pseudonym categories. */
 const affixLabels = ['gen', 'def', 'ort']
 
 export const anonymization:{ [key: string]: (type: string, labels: string[], s: string) => string } = {

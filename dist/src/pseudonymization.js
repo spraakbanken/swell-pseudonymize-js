@@ -71,15 +71,6 @@ function pseudonymizeFromList(a) {
         return a[arrayIdx];
     };
 }
-/** Find, remove and return the first element matching a given predicate */
-function extractFirst(xs, pred) {
-    const i = xs.findIndex(pred);
-    if (i > -1) {
-        const y = xs[i];
-        xs.splice(i, 1);
-        return y;
-    }
-}
 function randomInt() {
     return '' + (random.getRandomInt(50) + 1);
 }
@@ -166,6 +157,7 @@ function pseudonymizeTransport(type, labels, s) {
     }
     return result;
 }
+/** Modifiers labels, not associated with pseudonym categories. */
 const affixLabels = ['gen', 'def', 'ort'];
 exports.anonymization = {
     'firstname:male': pseudonymizeFromList(names.maleName),
