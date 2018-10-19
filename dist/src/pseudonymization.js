@@ -158,7 +158,7 @@ function pseudonymizeTransport(type, labels, s) {
     return result;
 }
 /** Modifiers labels, not associated with pseudonym categories. */
-const affixLabels = ['gen', 'def', 'ort'];
+const affixLabels = ['gen', 'def', 'pl', 'ort'];
 exports.anonymization = {
     'firstname:male': pseudonymizeFromList(names.maleName),
     'firstname:female': pseudonymizeFromList(names.femaleName),

@@ -177,7 +177,7 @@ function pseudonymizeTransport(type: string, labels: string[], s: string): strin
 }
 
 /** Modifiers labels, not associated with pseudonym categories. */
-const affixLabels = ['gen', 'def', 'ort']
+const affixLabels = ['gen', 'def', 'pl', 'ort']
 
 export const anonymization:{ [key: string]: (type: string, labels: string[], s: string) => string } = {
   'firstname:male': pseudonymizeFromList(names.maleName),
