@@ -233,6 +233,12 @@ describe('all', () => {
       assert(year <= 2020)
     })
     
+    it('should not make up negative or zero years', () => {
+      for (let i = 0; i < 20; i++) {
+        assert(parseInt(pseudonymize('1', ['year'])) > 0)
+      }
+    })
+    
     it('should replace all digits in dates with 1', () => {
       assert(pseudonymize('2018-12-01', ['date-digits']) === '1111-11-11')
       assert(pseudonymize('18/01/12', ['date-digits']) === '11/11/11')

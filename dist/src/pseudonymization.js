@@ -144,7 +144,7 @@ function pseudonymizeYear(type, labels, s) {
     }
     else {
         const offset = random.getRandomInt(5) - 2;
-        return '' + (yearInt + offset);
+        return '' + Math.max(1, yearInt + offset);
     }
 }
 function pseudonymizeDate(type, labels, s) {

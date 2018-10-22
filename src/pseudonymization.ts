@@ -160,7 +160,7 @@ function pseudonymizeYear(type: string, labels: string[], s: string): string {
     return '' + random.getRandomBetween(1970, 2018)
   } else {
     const offset = random.getRandomInt(5) - 2
-    return '' + (yearInt + offset)
+    return '' + Math.max(1, yearInt + offset)
   }
 }
 

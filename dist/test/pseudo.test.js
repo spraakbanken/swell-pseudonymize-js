@@ -73,8 +73,7 @@ describe('all', () => {
         });
         it('should replace initials with A', () => assert(pseudonymization_1.pseudonymize('GG', ['initials']) === 'A'));
         it('should add extra tags as affix', () => {
-            console.log(pseudonymization_1.pseudonymize('jaja', ['firstname:female', 'gen']));
-            assert(pseudonymization_1.pseudonymize('jaja', ['firstname:female', 'gen']).substr(-4) === '-gen');
+            assert(pseudonymization_1.pseudonymize('jaja', ['firstname:female', 'pl', 'quux', 'gen']).substr(-7) === '-pl-gen');
             const name1 = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '3']);
             const affixName1 = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '3', 'gen']);
             const affixName2 = pseudonymization_1.pseudonymize('jaja', ['firstname:female', 'gen', '3']);
@@ -178,6 +177,11 @@ describe('all', () => {
             const year = parseInt(pseudonymization_1.pseudonymize('2018', ['year']));
             assert(year >= 2016);
             assert(year <= 2020);
+        });
+        it('should not make up negative or zero years', () => {
+            for (let i = 0; i < 20; i++) {
+                assert(parseInt(pseudonymization_1.pseudonymize('1', ['year'])) > 0);
+            }
         });
         it('should replace all digits in dates with 1', () => {
             assert(pseudonymization_1.pseudonymize('2018-12-01', ['date-digits']) === '1111-11-11');
