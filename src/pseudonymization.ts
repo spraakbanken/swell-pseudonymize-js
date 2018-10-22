@@ -207,7 +207,7 @@ export const anonymization:{ [key: string]: (type: string, labels: string[], s: 
   'month-digit': () => '' + (random.getRandomInt(12) + 1),
   'month-word': pseudonymizeWrittenMonth,
   'year': pseudonymizeYear,
-  'date-digits': pseudonymizeDate,
+  'date_digits': pseudonymizeDate,
   'phone_nr': phoneNumber,
   'email': email,
   'personid_nr': () => '123456-0000',

@@ -240,10 +240,10 @@ describe('all', () => {
     })
     
     it('should replace all digits in dates with 1', () => {
-      assert(pseudonymize('2018-12-01', ['date-digits']) === '1111-11-11')
-      assert(pseudonymize('18/01/12', ['date-digits']) === '11/11/11')
-      assert(pseudonymize('180112', ['date-digits']) === '111111')
-      assert(pseudonymize('11/12', ['date-digits']) === '11/11')
+      assert(pseudonymize('2018-12-01', ['date_digits']) === '1111-11-11')
+      assert(pseudonymize('18/01/12', ['date_digits']) === '11/11/11')
+      assert(pseudonymize('180112', ['date_digits']) === '111111')
+      assert(pseudonymize('11/12', ['date_digits']) === '11/11')
     })
 
   })
