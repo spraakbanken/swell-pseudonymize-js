@@ -15,11 +15,9 @@ exports.femaleName = [
     "Karin"
 ];
 exports.unknownName = [
-    "Emma",
-    "Peter",
-    "Sara",
-    "Johan",
-    "Anna"
+    "Kim",
+    "Alex",
+    "Charlie",
 ];
 exports.surname = [
     "Olsson",
@@ -27,62 +25,75 @@ exports.surname = [
     "Johansson"
 ];
 exports.place = [
-    "Storgatan",
-    "teatern",
-    "stora torget",
-    "folkhögskolan",
+    "A-plats",
+    "B-plats",
+    "C-plats",
+    "D-plats",
 ];
 exports.school = [
-    "Skälbyskolan",
-    "Broholmskolan",
-    "Minervagymnasium"
+    "A-skola",
+    "B-skola",
+    "C-skola",
+    "D-skola",
 ];
 exports.workplace = [
-    "Volvo",
-    "hemtjänsten",
-    "Sahlgrenska",
-    "IKEA"
+    "A-arbetsplats",
+    "B-arbetsplats",
+    "C-arbetsplats",
+    "D-arbetsplats",
 ];
 exports.otherInstitution = [
-    "Sportlag"
+    "A-institution",
+    "B-institution",
+    "C-institution",
+    "D-institution",
 ];
 exports.countryOfOrigin = [
-    "Norge",
-    "Danmark",
-    "Finland",
-    "Island"
+    "A-hemland",
+    "B-hemland",
+    "C-hemland",
+    "D-hemland",
 ];
 exports.country = [
-    "Norge",
-    "Danmark",
-    "Finland",
-    "Island"
+    "A-land",
+    "B-land",
+    "C-land",
+    "D-land",
 ];
 exports.city = [
-    "Bagdad",
-    "Kairo",
-    "Köpenhamn",
-    "New York",
+    "A-stad",
+    "B-stad",
+    "C-stad",
+    "D-stad",
 ];
 exports.citySwe = [
-    "Ladvreta",
-    "Guntorp",
-    "Myre"
+    "A-svensk-stad",
+    "B-svensk-stad",
+    "C-svensk-stad",
+    "D-svensk-stad",
 ];
 exports.geographicLocation = [
-    "Storberget",
-    "Björkudden",
-    "Långsjön"
+    "A-geoplats",
+    "B-geoplats",
+    "C-geoplats",
+    "D-geoplats",
 ];
 exports.region = [
-    "Region"
+    "A-region",
+    "B-region",
+    "C-region",
+    "D-region",
 ];
 exports.area = [
-    "Area"
+    "A-område",
+    "B-område",
+    "C-område",
+    "D-område",
 ];
 exports.transport = [
-    "tunnelbana",
-    "spårvagn",
-    "färja",
+    "A-transport",
+    "B-transport",
+    "C-transport",
+    "D-transport",
 ];
 //# sourceMappingURL=names.js.map

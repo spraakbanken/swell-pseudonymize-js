@@ -15,11 +15,9 @@ export const femaleName = [
 ]
 
 export const unknownName = [
-  "Emma",
-  "Peter",
-  "Sara",
-  "Johan",
-  "Anna"
+  "Kim",
+  "Alex",
+  "Charlie",
 ]
 
 export const surname = [
@@ -29,72 +27,85 @@ export const surname = [
 ]
 
 export const place = [
-  "Storgatan",
-  "teatern",
-  "stora torget",
-  "folkhögskolan",
+  "A-plats",
+  "B-plats",
+  "C-plats",
+  "D-plats",
 ]
 
 export const school = [
-  "Skälbyskolan",
-  "Broholmskolan",
-  "Minervagymnasium"
+  "A-skola",
+  "B-skola",
+  "C-skola",
+  "D-skola",
 ]
 
 export const workplace = [
-  "Volvo",
-  "hemtjänsten",
-  "Sahlgrenska",
-  "IKEA"
+  "A-arbetsplats",
+  "B-arbetsplats",
+  "C-arbetsplats",
+  "D-arbetsplats",
 ]
 
 export const otherInstitution = [
-  "Sportlag"
+  "A-institution",
+  "B-institution",
+  "C-institution",
+  "D-institution",
 ]
 
 export const countryOfOrigin = [
-  "Norge",
-  "Danmark",
-  "Finland",
-  "Island"
+  "A-hemland",
+  "B-hemland",
+  "C-hemland",
+  "D-hemland",
 ]
 
 export const country = [
-  "Norge",
-  "Danmark",
-  "Finland",
-  "Island"
+  "A-land",
+  "B-land",
+  "C-land",
+  "D-land",
 ]
 
 export const city = [
-  "Bagdad",
-  "Kairo",
-  "Köpenhamn",
-  "New York",
+  "A-stad",
+  "B-stad",
+  "C-stad",
+  "D-stad",
 ]
 
 export const citySwe = [
-  "Ladvreta",
-  "Guntorp",
-  "Myre"
+  "A-svensk-stad",
+  "B-svensk-stad",
+  "C-svensk-stad",
+  "D-svensk-stad",
 ]
 
 export const geographicLocation = [
-  "Storberget",
-  "Björkudden",
-  "Långsjön"
+  "A-geoplats",
+  "B-geoplats",
+  "C-geoplats",
+  "D-geoplats",
 ]
 
 export const region = [
-  "Region"
+  "A-region",
+  "B-region",
+  "C-region",
+  "D-region",
 ]
 
 export const area = [
-  "Area"
+  "A-område",
+  "B-område",
+  "C-område",
+  "D-område",
 ]
 
 export const transport = [
-  "tunnelbana",
-  "spårvagn",
-  "färja",
+  "A-transport",
+  "B-transport",
+  "C-transport",
+  "D-transport",
 ]
