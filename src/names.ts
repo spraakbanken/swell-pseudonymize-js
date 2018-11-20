@@ -94,8 +94,7 @@ export const area = [
 ]
 
 export const transport = [
-  "buss",
-  "tunnelbana", 
-  "spårvagn", 
-  "tåg"
+  "tunnelbana",
+  "spårvagn",
+  "färja",
 ]

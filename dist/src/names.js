@@ -81,9 +81,8 @@ exports.area = [
     "Area"
 ];
 exports.transport = [
-    "buss",
     "tunnelbana",
     "spårvagn",
-    "tåg"
+    "färja",
 ];
 //# sourceMappingURL=names.js.map
