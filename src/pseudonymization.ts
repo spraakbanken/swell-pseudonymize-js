@@ -197,7 +197,7 @@ export const anonymization:{ [key: string]: (type: string, labels: string[], s: 
   'city': pseudonymizeFromList(names.city),
   'city-SWE': pseudonymizeFromList(names.citySwe),
   'area': pseudonymizeFromList(names.area),
-  'street': pseudonymizeFromList(names.streetName),
+  'place': pseudonymizeFromList(names.place),
   'geo': pseudonymizeFromList(names.geographicLocation),
   'street_nr': randomInt,
   'transport': pseudonymizeTransport,

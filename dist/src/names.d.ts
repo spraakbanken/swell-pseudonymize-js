@@ -2,7 +2,7 @@ export declare const maleName: string[];
 export declare const femaleName: string[];
 export declare const unknownName: string[];
 export declare const surname: string[];
-export declare const streetName: string[];
+export declare const place: string[];
 export declare const school: string[];
 export declare const workplace: string[];
 export declare const otherInstitution: string[];

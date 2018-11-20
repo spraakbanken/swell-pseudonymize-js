@@ -96,8 +96,8 @@ describe('all', () => {
         });
     });
     describe('geographic', () => {
-        it('should return a street name', () => {
-            assert(names.streetName.indexOf(pseudonymization_1.pseudonymize('jaja', ['street'])) != -1);
+        it('should return a place name', () => {
+            assert(names.place.indexOf(pseudonymization_1.pseudonymize('jaja', ['place'])) != -1);
         });
         it('should return a random street numbers', () => {
             const streetNr = pseudonymization_1.pseudonymize('3', ['street_nr']);
@@ -184,10 +184,10 @@ describe('all', () => {
             }
         });
         it('should replace all digits in dates with 1', () => {
-            assert(pseudonymization_1.pseudonymize('2018-12-01', ['date-digits']) === '1111-11-11');
-            assert(pseudonymization_1.pseudonymize('18/01/12', ['date-digits']) === '11/11/11');
-            assert(pseudonymization_1.pseudonymize('180112', ['date-digits']) === '111111');
-            assert(pseudonymization_1.pseudonymize('11/12', ['date-digits']) === '11/11');
+            assert(pseudonymization_1.pseudonymize('2018-12-01', ['date_digits']) === '1111-11-11');
+            assert(pseudonymization_1.pseudonymize('18/01/12', ['date_digits']) === '11/11/11');
+            assert(pseudonymization_1.pseudonymize('180112', ['date_digits']) === '111111');
+            assert(pseudonymization_1.pseudonymize('11/12', ['date_digits']) === '11/11');
         });
     });
     describe('other', () => {

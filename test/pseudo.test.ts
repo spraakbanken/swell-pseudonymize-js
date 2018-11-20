@@ -127,8 +127,8 @@ describe('all', () => {
 
   describe('geographic', () => {
 
-    it('should return a street name', () => {
-        assert(names.streetName.indexOf(pseudonymize('jaja', ['street'])) != -1)
+    it('should return a place name', () => {
+        assert(names.place.indexOf(pseudonymize('jaja', ['place'])) != -1)
     })
     
     it('should return a random street numbers', () => {

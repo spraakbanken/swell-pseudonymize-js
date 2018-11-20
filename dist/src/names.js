@@ -26,12 +26,11 @@ exports.surname = [
     "Svensson",
     "Johansson"
 ];
-exports.streetName = [
-    "Skogsvägen",
-    "Björkvägen",
-    "Nygatan",
-    "Parkvägen",
-    "Strandvägen"
+exports.place = [
+    "Storgatan",
+    "teatern",
+    "stora torget",
+    "folkhögskolan",
 ];
 exports.school = [
     "Skälbyskolan",

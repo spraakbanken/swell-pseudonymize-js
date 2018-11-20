@@ -28,12 +28,11 @@ export const surname = [
   "Johansson"
 ]
 
-export const streetName = [
-  "Skogsvägen",
-  "Björkvägen",
-  "Nygatan",
-  "Parkvägen",
-  "Strandvägen"
+export const place = [
+  "Storgatan",
+  "teatern",
+  "stora torget",
+  "folkhögskolan",
 ]
 
 export const school = [
