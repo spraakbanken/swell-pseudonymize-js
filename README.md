@@ -3,7 +3,7 @@
 ## Usage
 
 ```
-import {psedonymize} from 'pseudonymization'
+import {pseudonymize} from 'pseudonymization'
 
 pseudonymize('Karlstad', ['city']) // returns random city
 
@@ -22,3 +22,7 @@ ones are needed for the tests.
 ## Changing data
 
 For now, all the named entities live in `src/names.ts` and may be changed there.
+
+## Development
+
+Use `yarn test` and `yarn build` before committing.

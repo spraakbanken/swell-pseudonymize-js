@@ -147,8 +147,8 @@ describe('all', () => {
             testAge(age, 10);
         });
         it('should replace string ages within 5 years', () => {
-            let age = pseudonymization_1.pseudonymize('arton', ['age_digits']);
-            assert(age.match(/^[0-9]+$/) != null);
+            let age = pseudonymization_1.pseudonymize('arton', ['age_string', '18']);
+            testAge(age, 18);
         });
         it('uses variable index', () => {
             let age1 = pseudonymization_1.pseudonymize('10', ['age_digits', '2']);

@@ -59,6 +59,11 @@ function pseudonymizeAge(type, labels, s) {
         return '' + (ageInt + offset);
     }
 }
+/** The age is given as a numerical label, e.g. "eighteen" should be labeled "age_string 18". */
+function pseudonymizeAgeString(type, labels, s) {
+    const age = labels.find(v => !isNaN(Number(v)));
+    return pseudonymizeAge(type, labels, age || '');
+}
 function pseudonymizeFromList(a) {
     return function (type, labels, s) {
         if (!exports.usedForType[type]) {
@@ -183,6 +188,7 @@ exports.anonymization = {
     'transport': pseudonymizeTransport,
     'transport_line': () => '1',
     'age_digits': pseudonymizeAge,
+    'age_string': pseudonymizeAgeString,
     'day': () => '' + (random.getRandomInt(28) + 1),
     'month-digit': () => '' + (random.getRandomInt(12) + 1),
     'month-word': pseudonymizeWrittenMonth,
