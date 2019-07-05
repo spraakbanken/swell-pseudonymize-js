@@ -186,9 +186,9 @@ function pseudonymizeTransport(type: string, labels: string[], s: string): strin
 const affixLabels = ['gen', 'def', 'pl', 'ort']
 
 export const anonymization:{ [key: string]: (type: string, labels: string[], s: string) => string } = {
-  'firstname:male': pseudonymizeFromList(names.maleName),
-  'firstname:female': pseudonymizeFromList(names.femaleName),
-  'firstname:unknown': pseudonymizeFromList(names.unknownName),
+  'firstname_male': pseudonymizeFromList(names.maleName),
+  'firstname_female': pseudonymizeFromList(names.femaleName),
+  'firstname_unknown': pseudonymizeFromList(names.unknownName),
   'surname': pseudonymizeFromList(names.surname),
   'middlename': () => 'A',
   'initials': () => 'A',
@@ -201,7 +201,7 @@ export const anonymization:{ [key: string]: (type: string, labels: string[], s: 
   'zip_code': zipCode,
   'region': pseudonymizeFromList(names.region),
   'city': pseudonymizeFromList(names.city),
-  'city-SWE': pseudonymizeFromList(names.citySwe),
+  'city_swe': pseudonymizeFromList(names.citySwe),
   'area': pseudonymizeFromList(names.area),
   'place': pseudonymizeFromList(names.place),
   'geo': pseudonymizeFromList(names.geographicLocation),
@@ -211,8 +211,8 @@ export const anonymization:{ [key: string]: (type: string, labels: string[], s: 
   'age_digits': pseudonymizeAge,
   'age_string': pseudonymizeAgeString,
   'day': () => '' + (random.getRandomInt(28) + 1),
-  'month-digit': () => '' + (random.getRandomInt(12) + 1),
-  'month-word': pseudonymizeWrittenMonth,
+  'month_digit': () => '' + (random.getRandomInt(12) + 1),
+  'month_word': pseudonymizeWrittenMonth,
   'year': pseudonymizeYear,
   'date_digits': pseudonymizeDate,
   'phone_nr': phoneNumber,

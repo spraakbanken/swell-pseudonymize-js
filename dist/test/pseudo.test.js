@@ -22,19 +22,19 @@ describe('all', () => {
                 pseudonymization_1.pseudonymize('jaja', [label]);
             });
         });
-        it('should return a male name', () => assert(names.maleName.indexOf(pseudonymization_1.pseudonymize('jaja', ['firstname:male', '1'])) != -1));
-        it('should return a female name', () => assert(names.femaleName.indexOf(pseudonymization_1.pseudonymize('jaja', ['firstname:female', '1'])) != -1));
+        it('should return a male name', () => assert(names.maleName.indexOf(pseudonymization_1.pseudonymize('jaja', ['firstname_male', '1'])) != -1));
+        it('should return a female name', () => assert(names.femaleName.indexOf(pseudonymization_1.pseudonymize('jaja', ['firstname_female', '1'])) != -1));
         it('should return an gender unknown name', () => {
-            assert(names.unknownName.indexOf(pseudonymization_1.pseudonymize('jaja', ['firstname:unknown', '1'])) != -1);
+            assert(names.unknownName.indexOf(pseudonymization_1.pseudonymize('jaja', ['firstname_unknown', '1'])) != -1);
         });
         it('should return same name for same number label', () => {
-            const firstName = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '1']);
-            const secondName = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '1']);
+            const firstName = pseudonymization_1.pseudonymize('jaja', ['firstname_female', '1']);
+            const secondName = pseudonymization_1.pseudonymize('jaja', ['firstname_female', '1']);
             assert(firstName === secondName);
         });
         it('should return same name for same number multi', () => {
             const res = [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3].map((idx) => {
-                return [idx, pseudonymization_1.pseudonymize('jaja', ['firstname:female', '' + idx])];
+                return [idx, pseudonymization_1.pseudonymize('jaja', ['firstname_female', '' + idx])];
             });
             const one = res.filter(([idx, elem]) => idx == 1).map((elem) => elem[1]);
             const two = res.filter(([idx, elem]) => idx == 2).map((elem) => elem[1]);
@@ -53,16 +53,16 @@ describe('all', () => {
         it('should never pick the same name twice (if it can be avoided)', () => {
             const seenNames = [];
             for (let i = 0; i < names.femaleName.length; i++) {
-                const result = pseudonymization_1.pseudonymize('jaja', ['firstname:female']);
+                const result = pseudonymization_1.pseudonymize('jaja', ['firstname_female']);
                 assert(seenNames.indexOf(result) == -1);
                 seenNames.push(result);
             }
-            const result2 = pseudonymization_1.pseudonymize('jaja', ['firstname:female']);
+            const result2 = pseudonymization_1.pseudonymize('jaja', ['firstname_female']);
             assert(seenNames.indexOf(result2) > -1);
         });
         it('should return diffrent name for different number label', () => {
-            const firstName = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '1']);
-            const secondName = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '2']);
+            const firstName = pseudonymization_1.pseudonymize('jaja', ['firstname_female', '1']);
+            const secondName = pseudonymization_1.pseudonymize('jaja', ['firstname_female', '2']);
             assert(firstName !== secondName);
         });
         it('should replace middle names with constant initial', () => {
@@ -73,10 +73,10 @@ describe('all', () => {
         });
         it('should replace initials with A', () => assert(pseudonymization_1.pseudonymize('GG', ['initials']) === 'A'));
         it('should add extra tags as affix', () => {
-            assert(pseudonymization_1.pseudonymize('jaja', ['firstname:female', 'pl', 'quux', 'gen']).substr(-7) === '-pl-gen');
-            const name1 = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '3']);
-            const affixName1 = pseudonymization_1.pseudonymize('jaja', ['firstname:female', '3', 'gen']);
-            const affixName2 = pseudonymization_1.pseudonymize('jaja', ['firstname:female', 'gen', '3']);
+            assert(pseudonymization_1.pseudonymize('jaja', ['firstname_female', 'pl', 'quux', 'gen']).substr(-7) === '-pl-gen');
+            const name1 = pseudonymization_1.pseudonymize('jaja', ['firstname_female', '3']);
+            const affixName1 = pseudonymization_1.pseudonymize('jaja', ['firstname_female', '3', 'gen']);
+            const affixName2 = pseudonymization_1.pseudonymize('jaja', ['firstname_female', 'gen', '3']);
             assert(affixName1 === name1 + '-gen');
             assert(affixName1 == affixName2);
         });
@@ -112,7 +112,7 @@ describe('all', () => {
         });
         it('should replace city with random city', () => {
             assert(names.city.indexOf(pseudonymization_1.pseudonymize('Flen', ['city'])) !== -1);
-            assert(names.citySwe.indexOf(pseudonymization_1.pseudonymize('Flen', ['city-SWE'])) !== -1);
+            assert(names.citySwe.indexOf(pseudonymization_1.pseudonymize('Flen', ['city_swe'])) !== -1);
         });
         it('should replace geo with random geographic thing', () => {
             assert(names.geographicLocation.indexOf(pseudonymization_1.pseudonymize('Flen', ['geo'])) !== -1);
@@ -163,14 +163,14 @@ describe('all', () => {
             assert(day <= 28);
         });
         it('should replace month digit with random number between 1-12', () => {
-            const month = parseInt(pseudonymization_1.pseudonymize('12', ['month-digit']));
+            const month = parseInt(pseudonymization_1.pseudonymize('12', ['month_digit']));
             assert(month >= 1);
             assert(month <= 12);
         });
         it('should replace written months with random written month', () => {
-            const month = pseudonymization_1.pseudonymize('jaja', ['month-word']);
+            const month = pseudonymization_1.pseudonymize('jaja', ['month_word']);
             assert(month[0].toLowerCase() === month[0]);
-            const month2 = pseudonymization_1.pseudonymize('Jaja', ['month-word']);
+            const month2 = pseudonymization_1.pseudonymize('Jaja', ['month_word']);
             assert(month2[0].toUpperCase() === month2[0]);
         });
         it('should replace year with +/- 2 randomly', () => {
