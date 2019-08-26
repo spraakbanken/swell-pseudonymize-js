@@ -9,7 +9,7 @@
     "@types/assert": "^0.0.31",
     "@types/jasmine": "^2.8.8",
     "mocha": "^5.1.1",
-    "parcel-bundler": "1.7.0",
+    "parcel-bundler": "1.10.0",
     "parcel-plugin-typescript": "^0.7.0",
     "ts-node": "^6.0.0",
     "typescript": "^2.8.3",
