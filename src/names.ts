@@ -104,8 +104,8 @@ export const area = [
 ]
 
 export const transport = [
-  "A-transport",
-  "B-transport",
-  "C-transport",
-  "D-transport",
+  "A-linjen",
+  "B-linjen",
+  "C-linjen",
+  "D-linjen",
 ]

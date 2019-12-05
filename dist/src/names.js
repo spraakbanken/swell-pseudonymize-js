@@ -91,9 +91,9 @@ exports.area = [
     "D-område",
 ];
 exports.transport = [
-    "A-transport",
-    "B-transport",
-    "C-transport",
-    "D-transport",
+    "A-linjen",
+    "B-linjen",
+    "C-linjen",
+    "D-linjen",
 ];
 //# sourceMappingURL=names.js.map
