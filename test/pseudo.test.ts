@@ -164,18 +164,18 @@ describe('all', () => {
   describe('transportation', () => {
     
     it('should replace transportation types with a random type', () => {
-      const result = pseudonymize('transport', ['transport'])
+      const result = pseudonymize('transport', ['transport_name'])
       assert(names.transport.indexOf(result) != -1)
     })
     
     it('should maintain given capitalization of first letter', () => {
-      const result = pseudonymize('Transport', ['transport'])
+      const result = pseudonymize('Transport', ['transport_name'])
       assert(['B','S','T'].indexOf(result[0]) != -1)
     })
     
     it('should replace lines numbers with random number codes', () => {
-      assert(pseudonymize('2', ['transport_line']) === '1')
-      assert(pseudonymize('3', ['transport_line']) === '1')
+      assert(pseudonymize('2', ['transport_nr']) === '1')
+      assert(pseudonymize('3', ['transport_nr']) === '1')
     })
   })
 

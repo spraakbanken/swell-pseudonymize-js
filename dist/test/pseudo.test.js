@@ -124,16 +124,16 @@ describe('all', () => {
     });
     describe('transportation', () => {
         it('should replace transportation types with a random type', () => {
-            const result = pseudonymization_1.pseudonymize('transport', ['transport']);
+            const result = pseudonymization_1.pseudonymize('transport', ['transport_name']);
             assert(names.transport.indexOf(result) != -1);
         });
         it('should maintain given capitalization of first letter', () => {
-            const result = pseudonymization_1.pseudonymize('Transport', ['transport']);
+            const result = pseudonymization_1.pseudonymize('Transport', ['transport_name']);
             assert(['B', 'S', 'T'].indexOf(result[0]) != -1);
         });
         it('should replace lines numbers with random number codes', () => {
-            assert(pseudonymization_1.pseudonymize('2', ['transport_line']) === '1');
-            assert(pseudonymization_1.pseudonymize('3', ['transport_line']) === '1');
+            assert(pseudonymization_1.pseudonymize('2', ['transport_nr']) === '1');
+            assert(pseudonymization_1.pseudonymize('3', ['transport_nr']) === '1');
         });
     });
     describe('age', () => {
