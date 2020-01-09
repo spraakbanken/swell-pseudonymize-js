@@ -67,8 +67,7 @@ function pseudonymizeAge(type: string, labels: string[], s: string): string {
 /** The age is given as a numerical label, e.g. "eighteen" should be labeled "age_string 18". */
 function pseudonymizeAgeString(type: string, labels: string[], s: string): string {
   const age = labels.find(v => !isNaN(Number(v)))
-/**return pseudonymizeAge(type, labels, age || '') */
-  return '' + age
+  return pseudonymizeAge(type, labels, age || '')
 }
 
 function pseudonymizeFromList(a: string[]) {
