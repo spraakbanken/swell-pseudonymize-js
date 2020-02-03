@@ -95,10 +95,10 @@ exports.area = [
     "D-område",
 ];
 exports.cityForeign = [
-    "A-svensk-stad",
-    "B-svensk-stad",
-    "C-svensk-stad",
-    "D-svensk-stad",
+    "A-stad",
+    "B-stad",
+    "C-stad",
+    "D-stad",
 ];
 exports.placeForeign = [
     "A-plats",
