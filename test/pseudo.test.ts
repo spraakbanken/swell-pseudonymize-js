@@ -128,7 +128,8 @@ describe('all', () => {
   describe('geographic', () => {
 
     it('should return a place name', () => {
-        assert(names.place.indexOf(pseudonymize('jaja', ['place'])) != -1)
+      assert(names.place.indexOf(pseudonymize('jaja', ['place'])) != -1)
+      assert(names.placeForeign.indexOf(pseudonymize('jaja', ['place_foreign'])) != -1)
     })
     
     it('should return a random street numbers', () => {
@@ -147,7 +148,7 @@ describe('all', () => {
 
     it('should replace city with random city', () => {
       assert(names.city.indexOf(pseudonymize('Flen', ['city'])) !== -1)
-      assert(names.citySwe.indexOf(pseudonymize('Flen', ['city_swe'])) !== -1)
+      assert(names.cityForeign.indexOf(pseudonymize('Flen', ['city_foreign'])) !== -1)
     })
 
     it('should replace geo with random geographic thing', () => {

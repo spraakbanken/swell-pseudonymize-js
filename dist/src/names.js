@@ -24,12 +24,6 @@ exports.surname = [
     "Svensson",
     "Johansson"
 ];
-exports.place = [
-    "A-plats",
-    "B-plats",
-    "C-plats",
-    "D-plats",
-];
 exports.school = [
     "A-skola",
     "B-skola",
@@ -61,34 +55,74 @@ exports.country = [
     "D-land",
 ];
 exports.city = [
-    "A-stad",
-    "B-stad",
-    "C-stad",
-    "D-stad",
+    "Tuna",
+    "Sund",
+    "Västanå",
+    "Björkås",
+    "Lundby",
+    "Petersborg",
+    "Sjövik",
+    "Lövsta",
+    "Segerstad",
+    "Norrby",
+    "Haga",
 ];
-exports.citySwe = [
-    "A-svensk-stad",
-    "B-svensk-stad",
-    "C-svensk-stad",
-    "D-svensk-stad",
-];
-exports.geographicLocation = [
-    "A-geoplats",
-    "B-geoplats",
-    "C-geoplats",
-    "D-geoplats",
+exports.place = [
+    "Ringvägen",
+    "Skolgatan",
+    "Björkvägen",
+    "Skogsvägen",
+    "Strandvägen",
+    "Storgatan",
+    "Parkvägen",
+    "Nygatan",
+    "Kyrkvägen",
+    "Industrigatan",
+    "Kvarnvägen",
+    "Genvägen",
+    "Drottninggatan",
 ];
 exports.region = [
-    "A-region",
-    "B-region",
-    "C-region",
-    "D-region",
+    "Norrland",
+    "Mellansverige",
+    "Sydsverige",
+    "Västsverige",
 ];
 exports.area = [
     "A-område",
     "B-område",
     "C-område",
     "D-område",
+];
+exports.cityForeign = [
+    "A-svensk-stad",
+    "B-svensk-stad",
+    "C-svensk-stad",
+    "D-svensk-stad",
+];
+exports.placeForeign = [
+    "A-plats",
+    "B-plats",
+    "C-plats",
+    "D-plats",
+];
+exports.regionForeign = [
+    "A-region",
+    "B-region",
+    "C-region",
+    "D-region",
+];
+exports.areaForeign = [
+    "A-område",
+    "B-område",
+    "C-område",
+    "D-område",
+];
+exports.geographicLocation = [
+    "A-geoplats",
+    "B-geoplats",
+    "C-geoplats",
+    "D-geoplats",
 ];
 exports.transport = [
     "A-linjen",

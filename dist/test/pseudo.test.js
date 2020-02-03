@@ -98,6 +98,7 @@ describe('all', () => {
     describe('geographic', () => {
         it('should return a place name', () => {
             assert(names.place.indexOf(pseudonymization_1.pseudonymize('jaja', ['place'])) != -1);
+            assert(names.placeForeign.indexOf(pseudonymization_1.pseudonymize('jaja', ['place_foreign'])) != -1);
         });
         it('should return a random street numbers', () => {
             const streetNr = pseudonymization_1.pseudonymize('3', ['street_nr']);
@@ -112,7 +113,7 @@ describe('all', () => {
         });
         it('should replace city with random city', () => {
             assert(names.city.indexOf(pseudonymization_1.pseudonymize('Flen', ['city'])) !== -1);
-            assert(names.citySwe.indexOf(pseudonymization_1.pseudonymize('Flen', ['city_swe'])) !== -1);
+            assert(names.cityForeign.indexOf(pseudonymization_1.pseudonymize('Flen', ['city_foreign'])) !== -1);
         });
         it('should replace geo with random geographic thing', () => {
             assert(names.geographicLocation.indexOf(pseudonymization_1.pseudonymize('Flen', ['geo'])) !== -1);

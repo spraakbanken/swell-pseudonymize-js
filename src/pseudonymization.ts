@@ -155,7 +155,7 @@ function pseudonymizeWrittenMonth(type: string, labels: string[], s: string): st
   const months = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"]
   let result = months[idx]
   if (isUpperCase(s[0])) {
-    result = s[0].toUpperCase() + result.slice(1)
+    result = result[0].toUpperCase() + result.slice(1)
   }
   return result
 }
@@ -201,7 +201,10 @@ export const anonymization:{ [key: string]: (type: string, labels: string[], s: 
   'zip_code': zipCode,
   'region': pseudonymizeFromList(names.region),
   'city': pseudonymizeFromList(names.city),
-  'city_swe': pseudonymizeFromList(names.citySwe),
+  'city_foreign': pseudonymizeFromList(names.cityForeign),
+  'area_foreign': pseudonymizeFromList(names.areaForeign),
+  'place_foreign': pseudonymizeFromList(names.placeForeign),
+  'region_foreign': pseudonymizeFromList(names.regionForeign),
   'area': pseudonymizeFromList(names.area),
   'place': pseudonymizeFromList(names.place),
   'geo': pseudonymizeFromList(names.geographicLocation),

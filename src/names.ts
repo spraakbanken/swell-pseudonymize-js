@@ -26,13 +26,6 @@ export const surname = [
   "Johansson"
 ]
 
-export const place = [
-  "A-plats",
-  "B-plats",
-  "C-plats",
-  "D-plats",
-]
-
 export const school = [
   "A-skola",
   "B-skola",
@@ -69,31 +62,40 @@ export const country = [
 ]
 
 export const city = [
-  "A-stad",
-  "B-stad",
-  "C-stad",
-  "D-stad",
+  "Tuna",
+  "Sund",
+  "Västanå",
+  "Björkås",
+  "Lundby",
+  "Petersborg",
+  "Sjövik",
+  "Lövsta",
+  "Segerstad",
+  "Norrby",
+  "Haga",
 ]
 
-export const citySwe = [
-  "A-svensk-stad",
-  "B-svensk-stad",
-  "C-svensk-stad",
-  "D-svensk-stad",
-]
-
-export const geographicLocation = [
-  "A-geoplats",
-  "B-geoplats",
-  "C-geoplats",
-  "D-geoplats",
+export const place = [
+  "Ringvägen",
+  "Skolgatan",
+  "Björkvägen",
+  "Skogsvägen",
+  "Strandvägen",
+  "Storgatan",
+  "Parkvägen",
+  "Nygatan",
+  "Kyrkvägen",
+  "Industrigatan",
+  "Kvarnvägen",
+  "Genvägen",
+  "Drottninggatan",
 ]
 
 export const region = [
-  "A-region",
-  "B-region",
-  "C-region",
-  "D-region",
+  "Norrland",
+  "Mellansverige",
+  "Sydsverige",
+  "Västsverige",
 ]
 
 export const area = [
@@ -101,6 +103,40 @@ export const area = [
   "B-område",
   "C-område",
   "D-område",
+]
+
+export const cityForeign = [
+  "A-svensk-stad",
+  "B-svensk-stad",
+  "C-svensk-stad",
+  "D-svensk-stad",
+]
+
+export const placeForeign = [
+  "A-plats",
+  "B-plats",
+  "C-plats",
+  "D-plats",
+]
+
+export const regionForeign = [
+  "A-region",
+  "B-region",
+  "C-region",
+  "D-region",
+]
+
+export const areaForeign = [
+  "A-område",
+  "B-område",
+  "C-område",
+  "D-område",
+]
+export const geographicLocation = [
+  "A-geoplats",
+  "B-geoplats",
+  "C-geoplats",
+  "D-geoplats",
 ]
 
 export const transport = [
