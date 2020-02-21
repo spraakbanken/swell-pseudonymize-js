@@ -154,9 +154,9 @@ function pseudonymizeWrittenMonth(type: string, labels: string[], s: string): st
   const idx = random.getRandomInt(12)
   const months = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"]
   let result = months[idx]
-  if (isUpperCase(s[0])) {
+  /* if (isUpperCase(s[0])) {
     result = result[0].toUpperCase() + result.slice(1)
-  }
+  } */
   return result
 }
 
