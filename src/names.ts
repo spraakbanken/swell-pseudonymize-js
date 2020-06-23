@@ -106,10 +106,15 @@ export const area = [
 ]
 
 export const cityForeign = [
-  "A-stad",
-  "B-stad",
-  "C-stad",
-  "D-stad",
+  "Oslo",
+  "New Delhi",
+  "London",
+  "New York",
+  "Paris",
+  "Milan",
+  "Dubai",
+  "Doha",
+  "Barcelona",
 ]
 
 export const placeForeign = [
